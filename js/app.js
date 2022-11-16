@@ -102,7 +102,7 @@ const newObject = localStorage.getItem("questionBank");
 let dataStored = JSON.parse(newObject);
 
 // Si tienes datos en memoria 
-if (!dataStored) {
+if (dataStored) {
     for (i = 0; i < dataStored.length; i++) {
         myQuestions.push(dataStored[i]);
     }
