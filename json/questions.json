@@ -1,0 +1,82 @@
+data = [
+    {
+        "question": "¿Qué es HTML?",
+        "answers":{
+            "a": "How To Meet Ladies",
+            "b": "Hilos Temporales Manualmente Labrados",
+            "c": "Hyper Text Markup Languaje",
+            "d": "Hidro Tecnologia Multi Lenguaje"
+        },
+        "correctAnswer": "c"
+    },
+    {
+        "question": "¿Qué es HTTP?",
+        "answers":{
+            "a": "Hyper Text Transfer Protocol",
+            "b": "Hyper Transfer Text Protocol",
+            "c": "Holo Text Tranfer Protocol",
+            "d": "Holo Tranfer Text Protocol"
+        },
+        "correctAnswer": "a"
+    },
+    {
+        "question": "¿Qué devuelve (true || false) && (!false) ?",
+        "answers":{
+            "a": "True",
+            "b": "False",
+            "c": "Sintax Error",
+            "d": "trulse"
+        },
+        "correctAnswer": "a"
+    },
+    {
+        "question": "¿Qué es FTP? ",
+        "answers":{
+            "a": "Fuentes Tipo Pro",
+            "b": "Font Type Pro",
+            "c": "File Transfer Protocol",
+            "d": "Fire Transformation Procces"
+        },
+        "correctAnswer": "c"
+    },
+    {
+        "question": "¿Qué es MVC? ",
+        "answers":{
+            "a": "Modelos Virtuales Cam",
+            "b": "Modelo Vista Controlador",
+            "c": "Misterios Visiones y Crimenes",
+            "d": "México Va al Campeonato"
+        },
+        "correctAnswer": "b"
+    },
+    {
+        "question": "¿Qué es CRUD? ",
+        "answers":{
+            "a": "Conquist and Restore Utilities Domain",
+            "b": "Common Request United Defender",
+            "c": "Cronos Reloaded Unlimited Dream",
+            "d": "Create Read Update Delete"
+        },
+        "correctAnswer": "d"
+    },
+    {
+        "question": "¿Qué es LAN? ",
+        "answers":{
+            "a": "Local Area Network",
+            "b": "Legent Access Nation",
+            "c": "Linghtning Advantage Network",
+            "d": "Lime Aqua Neon"
+        },
+        "correctAnswer": "a"
+    },
+    {
+        "question": "¿Cuál de estos no es un lenguaje de programación? ",
+        "answers":{
+            "a": "JavaScript",
+            "b": "Java",
+            "c": "BrainFuck",
+            "d": "HTML"
+        },
+        "correctAnswer": "d"
+    }
+];
