@@ -3,22 +3,22 @@ const resultsBox = document.getElementById('results');
 const submitButton = document.getElementById('submit');
 let terminarResponder = false;
 
-function buildQuiz(){
+function buildQuiz() {
     const output = [];
     myQuestions.forEach(
-        (currentQuestion, questionNumber) =>{
+        (currentQuestion, questionNumber) => {
             const answers = [];
-            for(letter in currentQuestion.answers){
+            for (letter in currentQuestion.answers) {
                 answers.push(
-                    `<label>
-                    <input type="radio" name="question${questionNumber}" value="${letter}" class="rad_butn">
+                    `<label class=${letter} >
+                    <input type="radio"  name="question${questionNumber}" value="${letter}" class="rad_butn">
                     ${letter} : ${currentQuestion.answers[letter]}
                     </label>`
                 );
             }
             output.push(
                 `<div class="slide">
-                    <div class="question"> ${(questionNumber+1)}.${currentQuestion.question}  </div>
+                    <div class="question"> ${(questionNumber + 1)}.${currentQuestion.question}  </div>
                     <div class="answers"> ${answers.join("")} </div>
                 </div>`
             );
@@ -26,55 +26,70 @@ function buildQuiz(){
     );
     quizBox.innerHTML = output.join('');
 }
-function showResults(){
+function showResults() {
     terminarResponder = true;
     const answersBoxes = quizBox.querySelectorAll('.answers');
     let numCorrect = 0;
-    myQuestions.forEach( (currentQuestion, questionNumber) =>{
-        
+
+    myQuestions.forEach((currentQuestion, questionNumber) => {
         const answersBox = answersBoxes[questionNumber];
         const selector = `input[name=question${questionNumber}]:checked`;
-        const userAnswer = (answersBox.querySelector(selector) || {}).value;
-        
-        answersBoxes[questionNumber]
-        if(userAnswer === currentQuestion.correctAnswer){
-            numCorrect++;
-            answersBoxes[questionNumber].style.color = 'green';
-        }else{
-            answersBoxes[questionNumber].style.color = 'red';
-        }
-    }
+        const userAnswer = (answersBox.querySelector(selector) || {});
 
-    );
+        // Desabilito que se pueda seleccionar despues de terminar
+        const checkBoxes = answersBox.querySelectorAll('input');
+        checkBoxes.forEach((currentCheck) => {
+            currentCheck.setAttribute('disabled', true);
+        });
+
+        // Le da color dependiendo si la respuesta es correcta
+
+        if (!userAnswer.value) {
+            answersBox.style.color = 'red';
+            return;
+        }
+
+        const labelCheck = answersBox.querySelector(`label[class=${userAnswer.value}]`);
+
+        if (userAnswer.value === currentQuestion.correctAnswer) {
+            numCorrect++;
+            labelCheck.style.color = 'green';
+        } else {
+            labelCheck.style.color = 'red';
+        }
+
+    });
+
     resultsBox.innerHTML = `${numCorrect} correctos de ${myQuestions.length}`
 }
 
-function showSlide(n){
+function showSlide(n) {
     slides[currentSlide].classList.remove('active-slide');
     slides[n].classList.add('active-slide');
     currentSlide = n;
-    if(currentSlide === 0){
+    // Si estas en la primera pregunta:
+    if (currentSlide === 0) {
         previousButton.style.display = 'none';
-    }else{
+    } else {
         previousButton.style.display = 'inline-block';
     }
-
-    if(currentSlide === slides.length-1){
+    // Si estas en la ultima pregunta:
+    if (currentSlide === slides.length - 1) {
         nextButton.style.display = 'none';
-        
-        submitButton.style.display = 'inline-block';
-    }else{
+        if(!terminarResponder)
+            submitButton.style.display = 'inline-block';
+    } else {
         nextButton.style.display = 'inline-block';
         submitButton.style.display = 'none';
     }
 }
 
-function showNextSlide(){
-    showSlide(currentSlide+1);
+function showNextSlide() {
+    showSlide(currentSlide + 1);
 }
 
-function showPreviousSlide(){
-    showSlide(currentSlide-1);
+function showPreviousSlide() {
+    showSlide(currentSlide - 1);
 }
 
 const myQuestions = [];
@@ -86,19 +101,18 @@ for(i=0; i<data.length; i++ ){
 const newObject = localStorage.getItem("questionBank");
 let dataStored = JSON.parse(newObject);
 
-if(dataStored != ""){
-    for(i=0; i<dataStored.length; i++){
+// Si tienes datos en memoria 
+if (!dataStored) {
+    for (i = 0; i < dataStored.length; i++) {
         myQuestions.push(dataStored[i]);
     }
     document.getElementById('quizLength').innerHTML = dataStored.length
-}else{
-    for(i=0; i<data.length; i++){
+} else {
+    for (i = 0; i < data.length; i++) {
         myQuestions.push(data[i]);
     }
     document.getElementById('quizLength').innerHTML = data.length;
 }
-
-/*////////////////////////////// */
 
 document.getElementById('quizLength').innerHTML = myQuestions.length;
 

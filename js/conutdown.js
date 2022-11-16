@@ -23,8 +23,9 @@ function initializeClock(id, endtime) {
             clearInterval(timeInterval);
             showResults();
             submitButton.style.display = 'none';
-            previousButton.style.display = 'none';
-            nextButton.style.display = 'none';
+
+            //previousButton.style.display = 'none';
+            //nextButton.style.display = 'none';
 
             tryAgainButton.style.display = 'inline-block';
         }else{
