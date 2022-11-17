@@ -15,4 +15,3 @@ Este es un proyecto pequeño el cual se tienen diversas perguntas en un cuestioa
 - [JavaScript]
 - [CSS]
 - [Visual Studio Code]
-- 
